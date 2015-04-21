@@ -21,6 +21,8 @@
 #include "checksumm.h"
 #include "ConfigValue.h"
 
+#include "SerialConsole.h"
+
 #define return_error_on_unhandled_gcode_checksum    CHECKSUM("return_error_on_unhandled_gcode")
 
 // goes in Flash, list of Mxxx codes that are allowed when in Halted state
@@ -67,6 +69,7 @@ try_again:
 
     char first_char = possible_command[0];
     unsigned int n;
+    THEKERNEL->serial->printf("%s",new_message.message.c_str());
     if ( first_char == 'G' || first_char == 'M' || first_char == 'T' || first_char == 'N' ) {
 
         //Get linenumber
