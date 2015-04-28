@@ -52,6 +52,11 @@ constexpr uint16_t operator "" _checksum(const char* s, size_t n) {
 
 #else /* !CHECKSUM_USE_CPP */
 
+#ifdef __CDT_PARSER__
+#define CHECKSUM(X) ((uint16_t)sizeof(X))
+#else
+
+
 /* Adam Green's old and crusty C approach. */
 /* Recursively define SUM1, the basic checksum % 255 */
 #define SUM1_1(X) ((X)[0] % 255)
@@ -199,6 +204,7 @@ constexpr uint16_t operator "" _checksum(const char* s, size_t n) {
                      sizeof(X) == 33 ? CHECKSUM_32(X) : \
                      0xFFFF)
 #endif /* DEBUG */
-#endif /* CHECKSUM_USE_CPP */
 
+#endif /* CHECKSUM_USE_CPP */
+#endif /* __CDT_PARSER__ */
 #endif /* _CHECKSUM_MACRO_H_ */

@@ -12,6 +12,8 @@
 
 #include <string>
 
+class FileContentScreen;
+
 class FileScreen : public PanelScreen {
     public:
         FileScreen();
@@ -31,6 +33,8 @@ class FileScreen : public PanelScreen {
 
         std::string play_path;
         bool start_play;
+
+        FileContentScreen *filecontent_screen;
 };
 
 

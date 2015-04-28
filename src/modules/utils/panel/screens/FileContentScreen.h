@@ -23,8 +23,10 @@ class FileContentScreen : public PanelScreen {
         void setCurrentPath(std::string path);
 	private:
         uint16_t count_file_content();
+        void get_file_content();
         std::string current_path;
         FILE *current_file;
+        char lineContent[8][21];
 };
 
 #endif /* SRC_MODULES_UTILS_PANEL_SCREENS_FILECONTENTSCREEN_H_ */

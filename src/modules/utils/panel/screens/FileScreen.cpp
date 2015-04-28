@@ -19,10 +19,17 @@
 #include "DirHandle.h"
 #include "mri.h"
 
+#include "SerialConsole.h"
+#include "libs/SerialMessage.h"
+#include "libs/StreamOutputPool.h"
+#include "FileContentScreen.h"
+
 using std::string;
 
 FileScreen::FileScreen()
 {
+    this->filecontent_screen = new FileContentScreen();
+    this->filecontent_screen->set_parent(this);
     this->start_play = false;
 }
 
@@ -112,7 +119,9 @@ void FileScreen::clicked_line(uint16_t line)
 
         // start printing that file...
         this->play_path = path;
-        this->start_play = true;
+        this->filecontent_screen->setCurrentPath(this->play_path);
+        THEPANEL->enter_screen(this->filecontent_screen);
+        //this->start_play = true;
     }
 }
 
